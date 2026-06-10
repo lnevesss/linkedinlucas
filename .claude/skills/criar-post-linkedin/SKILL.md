@@ -23,14 +23,19 @@ Use o subagent **`redator-linkedin`**.
 ## Etapa 4 — Enviar post via Telegram
 Use PowerShell para enviar o post ao Telegram do Lucas via Bot API. As credenciais estão em `.claude/config/telegram.md`.
 
-Execute este comando PowerShell (substitua TEXT pelo conteúdo real da mensagem):
+Execute via Bash (substitua MESSAGE pelo conteúdo real):
 
-```powershell
-$token = "8561809125:AAHonpQsbKzkW83dWoTYqn6DtVyQQr7gEuU"
-$chatId = "8983818235"
-$text = "TEXT"
-$body = [System.Text.Encoding]::UTF8.GetBytes((@{chat_id=$chatId; text=$text; parse_mode="Markdown"} | ConvertTo-Json))
-Invoke-RestMethod -Uri "https://api.telegram.org/bot$token/sendMessage" -Method POST -ContentType "application/json; charset=utf-8" -Body $body
+```bash
+python3 -c "
+import json, urllib.request
+token = '8561809125:AAHonpQsbKzkW83dWoTYqn6DtVyQQr7gEuU'
+chat_id = '8983818235'
+text = '''MESSAGE'''
+data = json.dumps({'chat_id': chat_id, 'text': text, 'parse_mode': 'Markdown'}).encode('utf-8')
+req = urllib.request.Request(f'https://api.telegram.org/bot{token}/sendMessage', data=data, headers={'Content-Type': 'application/json'})
+urllib.request.urlopen(req)
+print('Telegram: enviado com sucesso')
+"
 ```
 
 A mensagem deve ter este formato:
