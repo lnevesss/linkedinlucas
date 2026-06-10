@@ -15,37 +15,18 @@ Use o subagent **`curador-noticias`**.
 Use o subagent **`redator-linkedin`**.
 - Resultado esperado: `posts/rascunhos/AAAA-MM-DD.md` com o post pronto em português.
 
-## Etapa 4 — Enviar post via Telegram
-Envie o post ao Telegram do Lucas via Bot API usando Python (funciona em qualquer sistema operacional). As credenciais estão em `.claude/config/telegram.md`.
-
-Execute via Bash (substitua MESSAGE pelo conteúdo real):
+## Etapa 4 — Publicar rascunho no GitHub
+Faça commit e push do rascunho. O GitHub Actions dispara automaticamente e envia o post para o Telegram do Lucas.
 
 ```bash
-python3 -c "
-import json, urllib.request
-token = '8561809125:AAHonpQsbKzkW83dWoTYqn6DtVyQQr7gEuU'
-chat_id = '8983818235'
-text = '''MESSAGE'''
-data = json.dumps({'chat_id': chat_id, 'text': text, 'parse_mode': 'Markdown'}).encode('utf-8')
-req = urllib.request.Request(f'https://api.telegram.org/bot{token}/sendMessage', data=data, headers={'Content-Type': 'application/json'})
-urllib.request.urlopen(req)
-print('Telegram: enviado com sucesso')
-"
+git config user.email "bot@linkedinlucas.com"
+git config user.name "LinkedInLucas Bot"
+git add posts/rascunhos/
+git commit -m "post: AAAA-MM-DD"
+git push
 ```
 
-A mensagem deve ter este formato:
-```
-*[LinkedIn] Rascunho do dia — AAAA-MM-DD*
-
-<texto completo do post>
-
----
-Fonte: <título> — <link>
-
-Se aprovar: poste no LinkedIn e mova posts/rascunhos/AAAA-MM-DD.md para posts/publicados/
-```
-
-Se o envio falhar: mostre o post no chat e avise o Lucas.
+Se o push falhar: mostre o post no chat e avise o Lucas.
 
 ## Ao final
 Responda ao Lucas com um resumo curto:
