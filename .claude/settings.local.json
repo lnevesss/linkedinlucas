@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:fortune.com)",
+      "WebFetch(domain:wellhub.com)",
+      "WebFetch(domain:finance.yahoo.com)",
+      "WebFetch(domain:www.statnews.com)",
+      "mcp__claude_ai_Gmail__create_draft"
+    ]
+  }
+}
