@@ -15,24 +15,21 @@ Use o subagent **`curador-noticias`**.
 Use o subagent **`redator-linkedin`**.
 - Resultado esperado: `posts/rascunhos/AAAA-MM-DD.md` com o post pronto em português.
 
-## Etapa 4 — Publicar rascunho no GitHub
-Faça commit e push do rascunho. O GitHub Actions dispara automaticamente e envia o post para o Telegram do Lucas.
+## Etapa 4 — Salvar rascunho no Gmail
+Use a ferramenta MCP Gmail (`gmail_create_draft`) para salvar o rascunho nos Drafts de `nevess.lucas@gmail.com`.
 
-```bash
-git config user.email "bot@linkedinlucas.com"
-git config user.name "LinkedInLucas Bot"
-git add posts/rascunhos/
-git commit -m "post: AAAA-MM-DD"
-git push
-```
+Parâmetros:
+- **to:** `nevess.lucas@gmail.com`
+- **subject:** `[LinkedIn] Rascunho para aprovação — AAAA-MM-DD`
+- **body:** texto com o post completo, fonte/link e instruções para publicar
 
-Se o push falhar: mostre o post no chat e avise o Lucas.
+Se a ferramenta MCP falhar: mostre o post diretamente no chat e avise o Lucas.
 
 ## Ao final
 Responda ao Lucas com um resumo curto:
 - Notícia escolhida e por quê (1 linha).
 - O texto do post.
-- Confirmação que a mensagem foi enviada no Telegram.
+- Confirmação que o rascunho foi salvo nos Drafts do Gmail.
 - Lembrete: aprovar → postar no LinkedIn → mover o arquivo para `posts/publicados/`.
 
 ## Regras gerais

@@ -1,0 +1,7 @@
+# Configurações locais (podem conter credenciais)
+.claude/settings.local.json
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
